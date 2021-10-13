@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Content </title>
+</head>
+
+ 
+    <body>
+
+        Contacts<br>
+        <button onclick="readContacts()">Show the latest version</button> 
+        <table id="table" ></table>
+    </body>
+
+<script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+<script>
+function readContacts(){
+    var url = '/read';
+
+    superagent
+        .get(url)
+        .end(function(err, res){
+            if (err) {
+                console.log('err:',err);
+            } else {
+                console.log('response:',res.text);
+                document.getElementById("table").innerHTML=res.text;
+            }
+        });
+
+}
+
+
+</script>
+</html>
